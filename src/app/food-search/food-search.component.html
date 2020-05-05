@@ -1,0 +1,15 @@
+<div>
+    <h1>Food search component</h1>
+
+    <input type="text" [(ngModel)]="searchPhrase"/>
+    <p>{{searchPhrase}}</p>
+
+    <button (click)="searchButton()">search</button>
+</div>
+
+<div *ngIf="foods != null" >
+    <div *ngFor="let food of foods.results">
+        {{food.title}}
+    </div>
+    
+</div>
