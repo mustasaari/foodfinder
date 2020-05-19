@@ -1,15 +1,25 @@
 <div>
-    <h1>Food search component</h1>
+    <div style="padding: 5% 20% 5% 20%">
+        <div style="border: 1px #B26700 solid; padding: 3% 3% 6% 3%; border-radius: 1vw; background-color: #FFDDA1;">
+            <h2 style="text-align: center;">Recipe search</h2>
 
-    <input type="text" [(ngModel)]="searchPhrase"/>
-    <p>{{searchPhrase}}</p>
-
-    <button (click)="searchButton()">search</button>
-</div>
-
-<div *ngIf="foods != null" >
-    <div *ngFor="let food of foods.results">
-        {{food.title}}
+            <div class="text-center">
+                <input type="text" [(ngModel)]="searchPhrase" (keydown.enter)="searchButton()" class="m-1"/>
+                <button (click)="searchButton()" class="btn btn-warning m-1">search</button>
+            </div>
+        </div>
     </div>
-    
+
+    <div *ngIf="foods != null" style="padding-left: 10%; padding-right: 10%;">
+        <div *ngFor="let food of foods.results" style="border: 1px solid #B26700; background-color: #FFDDA1; border-radius: 10px; text-align: center; padding: 1%; margin: 1%">
+            <h2 style="text-align: center;">{{food.title}}</h2>
+            <button [routerLink]="['/fooddetails', food.id]" routerLinkActive="active" class="btn btn-warning m-1">Go to Recipe</button>
+        </div>
+
+        <div *ngIf="foods.totalResults != null">
+            <h2 *ngIf="foods.totalResults === 0" class="text-center">no results found</h2>
+        </div>
+
+    </div>
+
 </div>

@@ -1,13 +1,9 @@
-nav {
-    background-color: rgb(115, 255, 0);
-}
-
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: khaki;
+    background-color: #FFC53A;
   }
   
   li {
@@ -24,9 +20,9 @@ ul {
   
   /* Change the link color to #111 (black) on hover */
   li a:hover {
-    background-color:yellowgreen;
+    background-color:#E06D06;
   }
 
   .active {
-      background-color: olive;
+      background-color: #B26700;
   }

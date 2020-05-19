@@ -7,11 +7,13 @@ interface fooditem {
   
 interface foodObject {
     results: fooditem[];
+    totalResults?;
 }
 
 @Component({
     selector: 'food-search-component',
     templateUrl: './food-search.component.html',
+    styleUrls: ['../app.component.css']
 })
 export class FoodSearchComponent {
 

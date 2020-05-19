@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { mapToMapExpression } from '@angular/compiler/src/render3/util';
+
 
 interface fooditem {
     title: string;
@@ -14,7 +14,7 @@ interface foodObject {
 @Injectable()
 export class FoodService {
 
-    title = 'testd';
+    apiKey: string = '33fc11d0655c4416bd7df0f4c99cccfb';
 
     constructor(
         private http: HttpClient
@@ -22,20 +22,28 @@ export class FoodService {
 
 
     getFood(paramsArray): Observable<foodObject> {
-        //this.http.get<foodObject>('https://api.spoonacular.com/recipes/search?apiKey=33fc11d0655c4416bd7df0f4c99cccfb&query=burger').subscribe( resp => console.log(resp.results[1].title));
-
-        //let par = new URLSearchParams;
-        //par.append("apiKey", "33fc11d0655c4416bd7df0f4c99cccfb&query=burger");
-
-        let foodObjectDto: foodObject;
-
-        let params2 = new HttpParams().set('apiKey', '33fc11d0655c4416bd7df0f4c99cccfb').set('query', paramsArray);
-
-        //this.http.get<foodObject>('https://api.spoonacular.com/recipes/search', { params: params2 }
-        //).subscribe( resp => foodObjectDto = resp);
-
-        return this.http.get<foodObject>('https://api.spoonacular.com/recipes/search', { params: params2 } );
-
-        //return foodObjectDto;
+        let params = new HttpParams().set('apiKey', '33fc11d0655c4416bd7df0f4c99cccfb').set('query', paramsArray);
+        return this.http.get<foodObject>('https://api.spoonacular.com/recipes/search', { params: params } );
     }
+
+    getRecipeInformationById(id): Observable<any> {
+        return this.http.get<any>('https://api.spoonacular.com/recipes/' +id +'/information?apiKey=33fc11d0655c4416bd7df0f4c99cccfb');
+    }
+
+    getWineRecommendation(foodName): Observable<any> {
+
+        let params = new HttpParams().set('apiKey', this.apiKey).set('food', foodName);
+        return this.http.get<any>('https://api.spoonacular.com/food/wine/pairing', {params: params});
+    }
+
+    getRecipesByIngrediends(ingredients: string[]): Observable<any> {
+        let params = new HttpParams().set('apiKey', this.apiKey).set('ingredients', ingredients.join(','));
+        return this.http.get<any>('https://api.spoonacular.com/recipes/findByIngredients', {params: params});
+    }
+
+    getRecipeNutrition(id: string): Observable<any> {
+        let params = new HttpParams().set('apiKey', this.apiKey).set('defaultCss', 'true');
+        return this.http.get<any>("https://api.spoonacular.com/recipes/" +id +"/nutritionWidget", { params: params, responseType: "html" as any} );
+    }
+
 }

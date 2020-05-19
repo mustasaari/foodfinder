@@ -2,3 +2,43 @@
     margin-left: 20vw;
     margin-right: 20vw;
 }
+
+.mycolor1 {
+    background-color: #FFDDA1;
+}
+
+.mycolor2 {
+    background-color: #FAFF81;
+}
+
+.mycolor1 {
+    background-color: #FFC53A;
+}
+
+.mycolor1 {
+    background-color: #E06D06;
+}
+
+.mycolor1 {
+    background-color: #B26700;
+}
+
+.detailsStyle {
+    border: 1px solid #B26700; 
+    background-color: #FFDDA1; 
+    border-radius: 15px; 
+    padding: 5%;
+}
+
+.bodypadding5 {
+    padding: 5%;
+}
+
+.searchstyle {
+    padding: 5% 20% 5% 20%;
+}
+
+.paddinglr {
+    padding-left: 20%;
+    padding-right: 20%;
+}

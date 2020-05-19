@@ -1,0 +1,41 @@
+
+<div>
+    <div style="padding: 5% 20% 5% 20%">
+        <div style="border: 1px #B26700 solid; padding: 3% 3% 6% 3%; border-radius: 1vw; background-color: #FFDDA1;">
+            <h2 style="text-align: center;">Wine recommendations for foods</h2>
+            <div style="text-align: center;">
+                <input type="text" [(ngModel)]="searchPhrase" (keydown.enter)="searchButton()"/>
+                <button (click)="searchButton()" class="btn btn-warning m-1">search</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="searchResult != null" style="padding: 5%">
+
+        <div class="detailsStyle">
+
+
+            <div *ngIf="searchResult.productMatches != null">
+                <p>{{searchResult.pairingText}}</p>
+
+                <h1 class="text-center">{{searchResult.productMatches[0].title}}</h1>
+                <div style="display: flex; justify-content: center; margin: 4%;">
+                    <img src={{searchResult.productMatches[0].imageUrl}}/>
+                </div>
+                <p class="mb-4">{{searchResult.productMatches[0].description}}</p>
+                <h2 class="mb-4">Price : {{searchResult.productMatches[0].price}}</h2>
+                <h2 class="mb-4">Rating : {{searchResult.productMatches[0].averageRating | number:'1.0-3'}}</h2>
+                <a href={{searchResult.productMatches[0].link}}>Visit Homepage</a>
+            </div>
+
+            <div *ngIf="searchResult.status === 'failure'">
+                <h1>Could not find matches</h1>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>

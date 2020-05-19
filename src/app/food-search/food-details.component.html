@@ -1,0 +1,31 @@
+<div *ngIf="information != null" style="padding: 5%">
+    <div style="border: 1px solid black; background-color: antiquewhite; border-radius: 15px; padding: 5%">
+
+        <h1 style="text-align: center; margin: 2%;">{{information.title}}</h1>
+
+        <div style="display: flex; justify-content: center; margin: 4%;">
+            <img src={{information.image}} style="border: groove;"/>
+        </div>
+
+        <div [innerHTML]="information.summary" class="mb-4"></div>
+
+        <a *ngIf="information.analyzedInstructions.length" class="btn btn-warning mb-4" data-toggle="collapse" href="#collapseInstructions" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Instructions</a>
+
+        <div *ngIf="information.analyzedInstructions.length" class="collapse" id="collapseInstructions">
+            <h2>Instructions : </h2>
+            <div *ngFor="let step of information.analyzedInstructions[0].steps; let elIndex=index">
+                <p>{{elIndex + 1}}. {{step.step}}</p>
+            </div>
+        </div>
+
+        <div>
+            <a class="btn btn-warning mb-4" data-toggle="collapse" href="#collapseNutrition" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Nutrition</a>
+
+            <div class="collapse" id="collapseNutrition">
+                <h2>Nutrition : </h2>
+                <div [innerHTML]="nutrition"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

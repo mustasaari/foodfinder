@@ -1,0 +1,29 @@
+<div>
+    <div class="searchstyle text-center">
+
+        <div class="detailsStyle">
+
+        <h2>Search recipes by ingredients</h2>
+        <input type="text" [(ngModel)]="ingredient" (keydown.enter)="addIngredient()" class="m-1"/>
+        <button (click)="addIngredient()" class="btn btn-warning m-1">Add</button>
+        <button (click)="searchButton()" class="btn btn-warning m-1" [disabled]="!ingredients.length">Search</button>
+
+        <div class="d-flex justify-content-start">
+            <div *ngFor="let ing of ingredients" class="p-1 m-1" style="border: 1px solid brown; border-radius: 5px;">
+                {{ing}}
+                <a class="btn btn-danger" (click)="removeIngredient(ing)">-</a>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
+    <div *ngFor="let result of resultList">
+        <div style="border: 1px solid black;" class="p-3 m-3 detailsStyle text-center">
+            <h2>{{result.title}}</h2>
+            <button [routerLink]="['/fooddetails', result.id]" routerLinkActive="active" class="btn btn-warning m-1">Go to Recipe</button>
+        </div>
+    </div>
+
+</div>
